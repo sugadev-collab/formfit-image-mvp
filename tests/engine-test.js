@@ -58,7 +58,8 @@
       // Verify output really is a decodable JPEG with the expected size
       var bmp = await createImageBitmap(r.blob);
       var decodeOk = bmp.width === r.width && bmp.height === r.height && r.blob.type === 'image/jpeg';
-      var ok = c.expectMiss ? r.status === 'max-miss' : (sizeOk && dimsOk && decodeOk && r.status === 'ok');
+      var qOk = c.s.width || c.s.height || r.quality >= 0.5; // free dims must not be blurry
+      var ok = c.expectMiss ? r.status === 'max-miss' : (sizeOk && dimsOk && decodeOk && qOk && r.status === 'ok');
       log(ok, c.name, b + ' B, ' + r.width + 'x' + r.height + ', q=' + r.quality.toFixed(2) + ', padded=' + r.padded + ', status=' + r.status + ', ' + r.ms + 'ms');
     } catch (e) { log(false, c.name, 'threw ' + e.message); }
   }

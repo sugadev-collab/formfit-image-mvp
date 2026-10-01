@@ -26,6 +26,7 @@
   var Q_MIN = 0.05, Q_MAX = 1.0, Q_STEPS = 8;
   var MAX_SHRINK_ROUNDS = 12;
   var MIN_SIDE = 32;
+  var GOOD_Q = 0.5;           // with free dimensions, shrink the image rather than go below this quality
   var lastResultUrl = null;
 
   function track(name, data) {
@@ -158,9 +159,11 @@
         var canvas = render(d, w, h, fit);
         r = await searchQuality(canvas, maxBytes);
         canvas.width = 0;
-        if (r.fits || size.fixed || Math.min(w, h) <= MIN_SIDE) break;
-        // Too big even at lowest quality: shrink proportionally to the overshoot.
-        var k = Math.min(0.9, Math.max(0.5, Math.sqrt(maxBytes / r.blob.size) * 0.95));
+        // Free dimensions: prefer a smaller image over a blurry one (quality < GOOD_Q).
+        var goodEnough = r.fits && (size.fixed || r.q >= GOOD_Q);
+        if (goodEnough || size.fixed || Math.min(w, h) <= MIN_SIDE) break;
+        // Shrink proportionally to the overshoot (size at lowest q, or at the q we got).
+        var k = r.fits ? 0.75 : Math.min(0.9, Math.max(0.5, Math.sqrt(maxBytes / r.blob.size) * 0.95));
         w = Math.max(MIN_SIDE, Math.round(w * k)); h = Math.max(MIN_SIDE, Math.round(h * k));
       }
 
