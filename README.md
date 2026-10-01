@@ -2,7 +2,7 @@
 
 A free, browser-only tool that resizes a photo or signature to the exact KB size and dimensions online forms ask for. Files are never uploaded.
 
-**Status:** MVP in progress (Session 2 of about 4 done). **Contributors and AIs: start with `AI_HANDOFF.md`**, then `PROJECT_PLAN.md`.
+**Status:** MVP in progress (Session 3 of 4 done). **Contributors and AIs: start with `AI_HANDOFF.md`**, then `PROJECT_PLAN.md`.
 
 ## Done
 - Mobile-first page layout
@@ -13,11 +13,17 @@ A free, browser-only tool that resizes a photo or signature to the exact KB size
 - Processing engine: target KB range, exact dimensions, JPEG output, white background
 - Result card with pass/fail checklist, download button and long-press hint
 
+- Landing pages (each has the full tool): `/resize-image-to-20kb/`, `/resize-image-to-50kb/`, `/resize-image-to-100kb/`, `/signature-resize-10kb-to-20kb/`, `/ssc-photo-signature-resize/` (SSC CGL 2026, general guidance only, not yet verified)
+- `/privacy/`, `404.html`, `robots.txt`, `sitemap.xml`, FAQ structured data and canonical/Open Graph tags
+
 ## Not yet built
-SEO pages, privacy page, sitemap (S3) · analytics and deployment (S4)
+Analytics, deployment, Search Console (S4)
 
 ## Tests
-Open `tests/engine-test.html` (engine) or `tests/ui-test.html` (end to end) in a browser and read the page or console output.
+Open in a browser and check that each shows 0 failed:
+- `tests/engine-test.html` (engine)
+- `tests/ui-test.html` (end to end)
+- `tests/pages-test.html` (all pages)
 
 ## Entry points
 - `/` — home page with the tool. Default preset comes from `<body data-preset="...">`.

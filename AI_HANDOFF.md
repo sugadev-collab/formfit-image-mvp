@@ -23,31 +23,32 @@ This repo is edited by several AIs and tools (Genspark, VS Code + various models
 - Don't add features outside the MVP before launch; put them in the PROJECT_PLAN §9 backlog instead.
 
 ## Session end checklist
-- [ ] Run `tests/engine-test.html` (and `tests/ui-test.html` if you touched the UI)
+- [ ] Run `tests/engine-test.html`, plus `tests/ui-test.html` and `tests/pages-test.html` if you touched HTML or UI. Each must show 0 failed.
 - [ ] Update PROJECT_PLAN §2, §5, §6, §7 (plus §3 if interfaces changed)
 - [ ] Add a row to the session log below
 
-## Current state (after Session 2)
-Tool works end to end: choose a preset or custom values → pick an image → process → checklist → download.
-Missing: SEO landing pages, privacy page, 404, robots/sitemap, analytics, deployment.
+## Current state (after Session 3)
+The tool works end to end on 6 pages (home + 5 landing pages), plus privacy, 404, robots and sitemap.
+**Heads-up:** the tool markup is copied into all 6 tool pages. Edit them together.
+Missing: analytics, deployment, Search Console. The SSC page is unverified (general guidance only).
 
-## Next task — Session 3: SEO + static pages
-1. Create landing pages as folders with `index.html`: `resize-image-to-20kb/`, `resize-image-to-50kb/`, `resize-image-to-100kb/`, `signature-resize-10kb-to-20kb/`.
-   - Copy the root `index.html` and change: `<body data-preset>` (`under-20`, `under-50`, `under-100`, `sig-10-20`), title, meta description, H1, and the guide/FAQ text (150–300 words, unique per page).
-   - Use `../` relative paths for css/js, or switch to root-absolute `/css/...` paths (fine on Cloudflare Pages, but then the preview needs a server).
-   - Add canonical, Open Graph tags and FAQPage JSON-LD (inside `<script type="application/ld+json">`).
-2. `ssc-photo-signature-resize/`: follow the **SSC rules** in PROJECT_PLAN §12. Name the specific exam, link the official notice, include a last-verified date, otherwise general guidance only.
-3. `privacy/index.html`: no uploads, no cookies; mention the analytics planned for S4.
-4. `404.html`, `robots.txt`, `sitemap.xml` (domain placeholder `https://formfit-image.pages.dev`, updated after deploy).
-5. Add a small footer nav linking the pages.
+## Next task — Session 4: analytics + deploy (last MVP session)
+1. **Analytics:** create `js/analytics.js` with GoatCounter (free, no cookies). Define `window.FF_track(name, data)` that calls `goatcounter.count({ path: 'event-' + name, title: name, event: true })`. Load it on all 6 tool pages, before `engine.js`.
+   - The engine already fires `process_success`, `process_error` and `download_click`.
+   - Add `file_selected` and `preset_used` in `ui.js` (one line each).
+   - Never send file names or image data.
+2. **No-upload check:** process a file with the network inspector open. Only GoatCounter pings are allowed, with no image payload.
+3. **Deploy:** the user creates the GitHub repo and connects it to Cloudflare Pages (no build command, output `/`).
+   - Then replace `https://formfit-image.pages.dev` in all HTML, robots and sitemap if the real URL differs.
+4. **Production checks:** every URL loads, 404 works, robots and sitemap are reachable, and the download works on a real Android phone in Chrome and in the WhatsApp in-app browser.
+5. **Search Console:** add a verification meta tag to `index.html`, submit `sitemap.xml`. Optionally do the same in Bing Webmaster Tools.
+6. **Optional, only if the user verifies it:** fill in the SSC CGL 2026 values plus the exact notice URL and date on the SSC page.
 
-**Done when:** every page loads without console errors, the tool works on each page with the correct preset, and a mobile screenshot passes.
-
-## Later
-- S4: GoatCounter via `window.FF_track` (the engine already calls it), a network check that no image is uploaded, a real Android test, Cloudflare Pages deploy, Search Console + sitemap. **Then STOP building and start validating.**
+**Done when:** the live URL works on Android, events show in GoatCounter, and the sitemap is submitted. **Then STOP building. Phase 4 validation starts.**
 
 ## Session log
 | # | Date | Tool/AI | Changed | Tests | Notes |
 |---|---|---|---|---|---|
 | 1 | 2026-10-01 | Genspark | index.html, css/style.css, js/presets.js, js/ui.js, docs | console check + mobile screenshot | `:has()` highlight needs a modern browser |
 | 2 | 2026-10-01 | Genspark | +js/engine.js, +tests/*, index.html (script tag), css (result styles), ui.js (hide old result on new file) | engine 9/9 pass; UI end-to-end pass (21.5 KB, 200×230); mobile screenshot OK | not yet tested on a real Android device |
+| 3 | 2026-10-01 | Genspark | +5 landing folders, +privacy/, +404.html, +robots.txt, +sitemap.xml, +tests/pages-test.*; index.html (SEO tags, FAQ, footer nav); css (FAQ, spec box, footer); ui.js (unknown preset → validate) | pages 15/15; UI end-to-end pass; SSC mobile screenshot OK | SSC page unverified; domain is a placeholder |

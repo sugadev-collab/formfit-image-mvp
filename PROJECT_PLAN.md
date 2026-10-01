@@ -12,6 +12,7 @@ Market experiment ($0 budget): a browser-only tool that resizes/compresses a pho
 - Phase: **2 — Rapid MVP build**
 - Session 1: ✅ done (layout, presets, settings validation, file select + preview)
 - Session 2: ✅ done (processing engine, result card, checklist, download, self-tests)
+- Session 3: ✅ done (5 landing pages, privacy, 404, robots, sitemap, footer nav, SEO tags, pages test)
 - Live URL: _not deployed yet_
 
 ## 3. Architecture
@@ -22,17 +23,25 @@ Market experiment ($0 budget): a browser-only tool that resizes/compresses a pho
 
 ```
 index.html          home page + tool (body[data-preset] selects default preset)
+resize-image-to-20kb/ | resize-image-to-50kb/ | resize-image-to-100kb/ | signature-resize-10kb-to-20kb/ | ssc-photo-signature-resize/
+                    landing pages: copies of the tool markup with ../ paths, their own preset, title/meta/H1/guide/FAQ
+privacy/index.html  privacy policy (no tool)
+404.html            uses root-absolute /css/ paths (served at any depth)
+robots.txt, sitemap.xml   domain placeholder https://formfit-image.pages.dev
 css/style.css       mobile-first styles
 js/presets.js       window.FF_PRESETS (generic presets only)
 js/engine.js        processing + result rendering; defines FF_engine.fitImage and FF_process
 js/ui.js            UI: presets, validation, file select, preview; exposes FF_STATE, FF_getSettings
 tests/engine-test.html   engine self-test (open in a browser → "SUMMARY: N passed, 0 failed")
 tests/ui-test.html       end-to-end test: loads index.html in an iframe, injects a photo, logs UI_RESULT
+tests/pages-test.html    every page: preset, SEO tags, footer, full process run, static pages
 ```
 Script load order in HTML: `presets.js` → `engine.js` → `ui.js`.
 
 **Interfaces (keep these stable; if you change them, update this section):**
 - `window.FF_PRESETS[key] = { label, mode|null, minKb|null, maxKb, width?, height? }`
+- `<body data-preset="KEY">` picks the default preset. An unknown key (such as `custom`) leaves the fields empty and asks the user for Max KB.
+- **Every tool page duplicates the tool markup.** If you change the tool HTML or IDs, change all 6 pages (index + 5 folders). `tests/pages-test.html` catches mismatches.
 - `window.FF_getSettings()` → `{ mode:'photo'|'signature', minKb|null, maxKb, width|null, height|null, fit:'crop'|'pad' }`
 - `window.FF_STATE` → `{ file, previewUrl, imgWidth, imgHeight }`
 - `window.FF_engine.fitImage(file, settings)` → Promise of `{ blob, width, height, quality, padded, status:'ok'|'max-miss', ms }`. Pure, no DOM output.
@@ -57,8 +66,8 @@ Script load order in HTML: `presets.js` → `engine.js` → `ui.js`.
 6. Result card: preview, bytes/KB, dimensions, pass/fail checklist, honest failure message ✅
 7. Download (`photo_21kb.jpg`) + long-press hint + Change settings / New image ✅
 8. Error handling: file type, HEIC, >25 MB, corrupt files, decode/memory errors during processing ✅ (polish in S3)
-9. Privacy note ✅ / privacy page ⏳ S3
-10. SEO landing pages, robots, sitemap ⏳ S3
+9. Privacy note ✅ / privacy page ✅
+10. SEO landing pages, robots, sitemap ✅ S3
 11. Analytics (GoatCounter) + deploy ⏳ S4
 
 **KB rule:** max is checked as `maxKb × 1000` bytes; min is checked as `minKb × 1024` bytes. This satisfies portals that use either definition.
@@ -68,9 +77,10 @@ Script load order in HTML: `presets.js` → `engine.js` → `ui.js`.
 |---|---|---|
 | 1 | 2026-10-01 | Project setup, layout, presets, settings validation, file picker + preview, docs |
 | 2 | 2026-10-01 | `js/engine.js` (fit/encode/pad/render result), result CSS, `tests/` self-tests. Engine test 9/9 pass; UI end-to-end pass; mobile screenshot OK |
+| 3 | 2026-10-01 | 5 landing pages, privacy, 404, robots, sitemap, footer nav, FAQ + JSON-LD + canonical/OG on all pages. Pages test 15/15; UI end-to-end pass; SSC mobile screenshot OK |
 
 ## 6. Current task
-**Next: Session 3 — SEO pages, privacy page, 404, robots, sitemap** (see `AI_HANDOFF.md` → Next task).
+**Next: Session 4 — analytics, no-upload check, Android test, deploy, Search Console** (see `AI_HANDOFF.md` → Next task).
 
 ## 7. Known bugs / limitations
 - The checked state of the segmented radios relies on CSS `:has()` (Chrome 105+, Safari 15.4+). Older browsers still work but show no highlight. Fix only if analytics show old browsers.
@@ -80,6 +90,10 @@ Script load order in HTML: `presets.js` → `engine.js` → `ui.js`.
 - Processing runs on the main thread: about 1–3 s for 12 MP photos on desktop, possibly slower on low-end Android. Move to a Web Worker only if data shows a problem.
 - Not yet tested on a real Android device or in WhatsApp/Telegram in-app browsers (S4).
 - Fixed W×H crop is always centred; there's no manual positioning (deferred).
+- The SSC page names **SSC CGL 2026** but is **not verified**. It has no numbers, only a link to ssc.gov.in (home page, not the exact notice PDF) and "Last verified: not yet verified". To verify: open the official CGL 2026 notice, add its values and the exact PDF URL, and set the date. Until then it's general guidance only.
+- `404.html` uses `/css/style.css`, which shows unstyled in the Genspark preview but works on Cloudflare Pages (served from the site root).
+- `https://formfit-image.pages.dev` is a placeholder in canonical, OG, robots and sitemap on all pages. Search and replace it once the real URL is known (S4).
+- Tool markup is duplicated in 6 pages (no build step). Accepted for the MVP; revisit if the page count grows.
 
 ## 8. Validation metrics (Phase 4, after launch)
 Events: `file_selected`, `preset_used`, `process_success` (met / min-miss / max-miss), `process_error` (reason), `download_click`, `fallback_shown`.
@@ -120,6 +134,8 @@ MVP → post-launch fixes (from data only) → evidence-driven improvements → 
 | No ads at launch | Measure real usage first; AdSense needs a domain anyway |
 | Generic presets only (no exam values yet) | Exam specs change; values must be verified against official notices |
 | SSC landing page stays planned (decided 2026-10-01) | See the SSC rules below |
+| SSC page built as unverified general guidance for CGL 2026 (S3) | The notice wasn't verified in-session, so no numbers are shown, per the SSC rules |
+| Landing pages are full HTML copies, not JS-injected | Static HTML is best for SEO and needs no build step |
 | Min KB reached by JPEG COM padding, not by worsening the image | Keeps the picture sharp; honest message shown to the user |
 | Free dims: shrink rather than go below q=0.5 | Blurry photos get rejected by verifiers; most forms don't need large pixel sizes |
 
