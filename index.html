@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resize Photo &amp; Signature to KB for Online Forms – FormFit Image</title>
+  <meta name="description" content="Free tool to resize and compress your photo or signature to the exact KB size and pixel dimensions required by online application forms. Works in your browser – files are never uploaded.">
+  <meta name="theme-color" content="#1d4ed8">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-preset="photo-20-50">
+  <header class="site-header">
+    <a href="./" class="brand">FormFit <span>Image</span></a>
+  </header>
+
+  <main id="main">
+    <section id="hero-section" class="hero">
+      <h1>Resize photo &amp; signature to the exact KB for online forms</h1>
+      <p class="privacy-note">🔒 Your file never leaves your device. All processing happens in your browser.</p>
+    </section>
+
+    <section id="tool-section" class="tool card" aria-label="Image resizer tool">
+      <!-- Step 1: type -->
+      <fieldset class="field-group">
+        <legend>1. What are you uploading?</legend>
+        <div class="segmented" role="radiogroup">
+          <label><input type="radio" name="mode" value="photo" checked> Photo</label>
+          <label><input type="radio" name="mode" value="signature"> Signature</label>
+        </div>
+      </fieldset>
+
+      <!-- Step 2: requirement -->
+      <fieldset class="field-group">
+        <legend>2. Form requirement</legend>
+        <div id="preset-chips" class="chips" role="group" aria-label="Common size presets"></div>
+
+        <div class="grid-2">
+          <label class="field">Min KB <small>(optional)</small>
+            <input id="min-kb" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 20">
+          </label>
+          <label class="field">Max KB
+            <input id="max-kb" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 50" required>
+          </label>
+          <label class="field">Width px <small>(optional)</small>
+            <input id="width-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 200">
+          </label>
+          <label class="field">Height px <small>(optional)</small>
+            <input id="height-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 230">
+          </label>
+        </div>
+
+        <div id="fit-row" class="segmented small" role="radiogroup" aria-label="How to fit into exact dimensions">
+          <label><input type="radio" name="fit" value="crop" checked> Crop to fill</label>
+          <label><input type="radio" name="fit" value="pad"> Fit (white border)</label>
+        </div>
+        <p id="settings-error" class="error" role="alert" hidden></p>
+      </fieldset>
+
+      <!-- Step 3: file -->
+      <fieldset class="field-group">
+        <legend>3. Choose your image</legend>
+        <label id="file-drop" class="file-drop" for="file-input">
+          <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp">
+          <span class="file-drop-icon" aria-hidden="true">📷</span>
+          <span id="file-drop-text">Tap to choose a photo (JPG, PNG, WebP)</span>
+        </label>
+        <p id="file-error" class="error" role="alert" hidden></p>
+
+        <figure id="preview-box" class="preview" hidden>
+          <img id="preview-img" alt="Preview of selected image">
+          <figcaption id="preview-info"></figcaption>
+        </figure>
+
+        <button id="process-btn" class="btn-primary" type="button" disabled>Resize &amp; Compress</button>
+      </fieldset>
+
+      <!-- Step 4: result (filled in Session 2) -->
+      <section id="result-section" class="result" hidden aria-live="polite"></section>
+    </section>
+
+    <section id="guide-section" class="guide">
+      <h2>How to use</h2>
+      <ol>
+        <li>Choose <strong>Photo</strong> or <strong>Signature</strong>.</li>
+        <li>Tap a preset or type the KB size and dimensions from your form's instructions.</li>
+        <li>Choose your image, tap <strong>Resize &amp; Compress</strong>, then download the JPG.</li>
+      </ol>
+      <p class="muted">Always check the size rules in the official notification for your form. Exam and portal rules can change.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>FormFit Image · Free · No upload · <a href="privacy/">Privacy</a></p>
+  </footer>
+
+  <script src="js/presets.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
