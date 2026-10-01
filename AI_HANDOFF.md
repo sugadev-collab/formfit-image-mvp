@@ -1,35 +1,53 @@
-# AI_HANDOFF.md — quick start for any AI session
+# AI_HANDOFF.md — start here (for any AI or human)
 
-**Read order:** this file → `PROJECT_PLAN.md` → only the files you need to touch.
+This repo is edited by several AIs and tools (Genspark, VS Code + various models, humans).
+**The code is the source of truth.** Docs may be stale, so check the actual files before acting.
 
-## Rules (credit-efficient)
-- One objective per session. Finish it or split it.
-- Inspect before editing. Make small targeted edits. Never rewrite working files.
-- No frameworks, no backend, no paid services. Image data must never leave the browser.
-- Mobile-first: test at 390px width.
-- At the end of a session, update the **Session log** below and sections 2, 5, 6, 7 of `PROJECT_PLAN.md`.
+## Read order
+1. This file
+2. `PROJECT_PLAN.md`: goals, architecture, **interfaces**, decisions, SSC rules
+3. Only the files your task touches
 
-## Current state
-- Session 1 done: UI shell works (presets, validation, file picker, preview).
-- Missing: processing engine, result/download, SEO pages, privacy page, analytics, deploy.
+## Session start checklist
+- [ ] Look at the file list, and at `git log` / `git diff` if you have it, to see what changed since the last session log entry
+- [ ] Open `tests/engine-test.html` in a browser. Expect `SUMMARY: N passed, 0 failed`.
+- [ ] Pick ONE task (the "Next task" below) and finish it, or split it
 
-## Next task — Session 2: processing engine
-Create `js/engine.js` (load it in `index.html` **before** `js/ui.js`) that defines `window.FF_process(state, settings)`:
-1. Decode `state.file` (`createImageBitmap`, falling back to `<img>`). Pre-downscale so the longest side is ≤ 4000 px.
-2. Target dimensions: if W and H are both set, use `crop` (cover, centred) or `pad` (contain on white). If only one is set, keep the aspect ratio.
-3. Always paint a white background (handles PNG transparency) → `canvas.toBlob('image/jpeg', q)`.
-4. Binary-search q (0.05–0.95, about 8 steps) for the largest size ≤ maxKb×1000 bytes.
-5. If still too big at q=0.05 and dimensions are not fixed, scale down by 0.85× and repeat.
-6. If below minKb×1024 at q=0.95 and dimensions are not fixed, upscale (≤ 2×) and repeat. Otherwise report "minimum not reachable".
-7. Render into `#result-section`: preview, KB + bytes, W×H, a checklist (✅/❌ size, dims, JPG), a Download link (`download="photo_48kb.jpg"`), a "long-press the image to save" hint, and a "Process again" button.
-8. Show a spinner and disable the button while working; use try/catch with a friendly error.
-**Done when:** test images land in 20–50 KB and 10–20 KB at 200×230 and 140×60, on desktop and in a mobile screenshot.
+## Rules
+- Static site: HTML + CSS + vanilla JS. **No frameworks, no build step, no backend, no paid services.**
+- **Image data must never leave the browser** (no fetch/XHR with file contents).
+- Mobile-first: check at a 390px width. Inputs at least 16px font, tap targets at least 44px.
+- Make small targeted edits. Don't rewrite working files or rename the IDs and globals listed in PROJECT_PLAN §3.
+- No `<script>`, `</script>` or `<!--` text inside inline JS. Prefer external `js/*.js` files.
+- No exam-specific numbers without an official source and a verified date (PROJECT_PLAN §12).
+- Don't add features outside the MVP before launch; put them in the PROJECT_PLAN §9 backlog instead.
 
-## Upcoming sessions
-- S3: error polish, 5 landing pages (copy index with a different `data-preset`, title/meta/H1/FAQ), `privacy/`, `404.html`, `robots.txt`, `sitemap.xml`.
-- S4: GoatCounter events, no-upload check, mobile pass, deploy to Cloudflare Pages, Search Console. **Then STOP building and start validating.**
+## Session end checklist
+- [ ] Run `tests/engine-test.html` (and `tests/ui-test.html` if you touched the UI)
+- [ ] Update PROJECT_PLAN §2, §5, §6, §7 (plus §3 if interfaces changed)
+- [ ] Add a row to the session log below
+
+## Current state (after Session 2)
+Tool works end to end: choose a preset or custom values → pick an image → process → checklist → download.
+Missing: SEO landing pages, privacy page, 404, robots/sitemap, analytics, deployment.
+
+## Next task — Session 3: SEO + static pages
+1. Create landing pages as folders with `index.html`: `resize-image-to-20kb/`, `resize-image-to-50kb/`, `resize-image-to-100kb/`, `signature-resize-10kb-to-20kb/`.
+   - Copy the root `index.html` and change: `<body data-preset>` (`under-20`, `under-50`, `under-100`, `sig-10-20`), title, meta description, H1, and the guide/FAQ text (150–300 words, unique per page).
+   - Use `../` relative paths for css/js, or switch to root-absolute `/css/...` paths (fine on Cloudflare Pages, but then the preview needs a server).
+   - Add canonical, Open Graph tags and FAQPage JSON-LD (inside `<script type="application/ld+json">`).
+2. `ssc-photo-signature-resize/`: follow the **SSC rules** in PROJECT_PLAN §12. Name the specific exam, link the official notice, include a last-verified date, otherwise general guidance only.
+3. `privacy/index.html`: no uploads, no cookies; mention the analytics planned for S4.
+4. `404.html`, `robots.txt`, `sitemap.xml` (domain placeholder `https://formfit-image.pages.dev`, updated after deploy).
+5. Add a small footer nav linking the pages.
+
+**Done when:** every page loads without console errors, the tool works on each page with the correct preset, and a mobile screenshot passes.
+
+## Later
+- S4: GoatCounter via `window.FF_track` (the engine already calls it), a network check that no image is uploaded, a real Android test, Cloudflare Pages deploy, Search Console + sitemap. **Then STOP building and start validating.**
 
 ## Session log
-| # | Date | Changed | Tests | Bugs / notes |
-|---|---|---|---|---|
-| 1 | 2026-10-01 | index.html, css/style.css, js/presets.js, js/ui.js, docs | Console check + desktop/mobile screenshots | `:has()` highlight needs a modern browser |
+| # | Date | Tool/AI | Changed | Tests | Notes |
+|---|---|---|---|---|---|
+| 1 | 2026-10-01 | Genspark | index.html, css/style.css, js/presets.js, js/ui.js, docs | console check + mobile screenshot | `:has()` highlight needs a modern browser |
+| 2 | 2026-10-01 | Genspark | +js/engine.js, +tests/*, index.html (script tag), css (result styles), ui.js (hide old result on new file) | engine 9/9 pass; UI end-to-end pass (21.5 KB, 200×230); mobile screenshot OK | not yet tested on a real Android device |

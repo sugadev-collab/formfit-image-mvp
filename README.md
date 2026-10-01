@@ -2,7 +2,7 @@
 
 A free, browser-only tool that resizes a photo or signature to the exact KB size and dimensions online forms ask for. Files are never uploaded.
 
-**Status:** MVP in progress (Session 1 of about 4). See `PROJECT_PLAN.md` (full plan) and `AI_HANDOFF.md` (next task).
+**Status:** MVP in progress (Session 2 of about 4 done). **Contributors and AIs: start with `AI_HANDOFF.md`**, then `PROJECT_PLAN.md`.
 
 ## Done
 - Mobile-first page layout
@@ -10,9 +10,14 @@ A free, browser-only tool that resizes a photo or signature to the exact KB size
 - Custom min/max KB and width/height with validation
 - Crop or fit option when exact dimensions are set
 - File picker (JPG/PNG/WebP, 25 MB limit, HEIC help message) with preview
+- Processing engine: target KB range, exact dimensions, JPEG output, white background
+- Result card with pass/fail checklist, download button and long-press hint
 
 ## Not yet built
-Processing engine and download (S2) · SEO pages, privacy page, sitemap (S3) · analytics and deployment (S4)
+SEO pages, privacy page, sitemap (S3) · analytics and deployment (S4)
+
+## Tests
+Open `tests/engine-test.html` (engine) or `tests/ui-test.html` (end to end) in a browser and read the page or console output.
 
 ## Entry points
 - `/` — home page with the tool. Default preset comes from `<body data-preset="...">`.
