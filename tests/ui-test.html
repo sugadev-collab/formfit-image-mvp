@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>FormFit UI end-to-end test</title>
+  <style>html,body{margin:0;height:100%}iframe{border:0;width:100%;height:100%}</style>
+</head>
+<body>
+  <!-- Loads the real index.html, injects a generated photo, runs the 20–50 KB preset at 200x230. -->
+  <iframe id="app" src="../index.html"></iframe>
+  <script>
+    document.getElementById('app').addEventListener('load', function () {
+      var win = this.contentWindow, doc = win.document;
+      var c = doc.createElement('canvas'); c.width = 1200; c.height = 1600;
+      var ctx = c.getContext('2d'), g = ctx.createLinearGradient(0, 0, 1200, 1600);
+      g.addColorStop(0, '#d9a07a'); g.addColorStop(1, '#2a4d7a');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, 1200, 1600);
+      ctx.fillStyle = '#f2d0b5'; ctx.beginPath(); ctx.arc(600, 650, 300, 0, 7); ctx.fill();
+      c.toBlob(function (b) {
+        var dt = new win.DataTransfer();
+        dt.items.add(new win.File([b], 'test.jpg', { type: 'image/jpeg' }));
+        var input = doc.getElementById('file-input');
+        input.files = dt.files;
+        input.dispatchEvent(new win.Event('change'));
+        doc.getElementById('width-px').value = 200;
+        doc.getElementById('height-px').value = 230;
+        doc.getElementById('height-px').dispatchEvent(new win.Event('input'));
+        setTimeout(function () {
+          doc.getElementById('process-btn').click();
+          var t = setInterval(function () {
+            if (doc.getElementById('download-btn')) {
+              clearInterval(t);
+              console.log('UI_RESULT', doc.querySelector('.checklist').innerText.replace(/\n/g, ' | '),
+                'download=', doc.getElementById('download-btn').getAttribute('download'));
+            }
+          }, 200);
+        }, 500);
+      }, 'image/jpeg', 0.95);
+    });
+  </script>
+</body>
+</html>
