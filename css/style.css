@@ -80,6 +80,25 @@ main { max-width: 640px; margin: 0 auto; padding: 16px; }
 .muted { color: var(--muted); font-size: .9rem; }
 
 .result { border-top: 1px solid var(--border); padding-top: 16px; }
+.result-title { font-size: 1.15rem; margin: 0 0 12px; }
+.result-preview { margin: 0 0 12px; text-align: center; }
+.result-preview img { max-width: 100%; max-height: 280px; border: 1px solid var(--border); border-radius: 8px; }
+.checklist { list-style: none; padding: 0; margin: 0 0 12px; font-size: .92rem; }
+.checklist li { padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; }
+.checklist li.pass { background: #f0fdf4; }
+.checklist li.fail { background: #fef2f2; color: var(--err); }
+.btn-link { text-align: center; text-decoration: none; line-height: 52px; padding: 0 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn-row { display: flex; gap: 8px; margin-top: 12px; }
+.btn-secondary {
+  flex: 1; min-height: 46px; border: 1px solid var(--border); border-radius: 10px; background: #fff;
+  font: inherit; font-weight: 600; color: var(--text); cursor: pointer;
+}
+.small { font-size: .82rem; }
+.spinner {
+  display: inline-block; width: 18px; height: 18px; vertical-align: -3px; margin-right: 6px;
+  border: 3px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .guide { margin-top: 24px; }
 .guide h2 { font-size: 1.15rem; }

@@ -112,6 +112,7 @@
     if (state.previewUrl) URL.revokeObjectURL(state.previewUrl);
     state.file = null; state.previewUrl = null; state.imgWidth = state.imgHeight = 0;
     els.previewBox.hidden = true;
+    document.getElementById('result-section').hidden = true; // stale result from previous file
     els.fileText.textContent = 'Tap to choose a photo (JPG, PNG, WebP)';
     updateProcessBtn();
   }
