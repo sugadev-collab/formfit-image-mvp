@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Signature Resize 10 KB to 20 KB (JPG) – Free, No Upload | FormFit Image</title>
+  <meta name="description" content="Resize your scanned or photographed signature to between 10 KB and 20 KB as a JPG for online application forms. Set exact dimensions and check the result. No upload.">
+  <meta name="theme-color" content="#1d4ed8">
+  <link rel="canonical" href="https://formfit-image.pages.dev/signature-resize-10kb-to-20kb/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FormFit Image">
+  <meta property="og:title" content="Signature Resize 10 KB to 20 KB – Free, No Upload">
+  <meta property="og:description" content="Fit your signature into the 10–20 KB JPG range for online forms, right in your browser.">
+  <meta property="og:url" content="https://formfit-image.pages.dev/signature-resize-10kb-to-20kb/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"My signature is only 5 KB. How can it become at least 10 KB?","acceptedAnswer":{"@type":"Answer","text":"Simple signatures compress very well. The tool first uses maximum quality, then adds blank data inside the JPG file to reach the minimum. The signature itself does not change."}},
+    {"@type":"Question","name":"How should I photograph my signature?","acceptedAnswer":{"@type":"Answer","text":"Sign with a black or dark blue pen on plain white paper, photograph it in good light from directly above, and crop out the rest of the page."}},
+    {"@type":"Question","name":"Is my image uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Processing happens in your browser and the file never leaves your device."}}
+  ]}
+  </script>
+</head>
+<body data-preset="sig-10-20">
+  <header class="site-header">
+    <a href="../" class="brand">FormFit <span>Image</span></a>
+  </header>
+
+  <main id="main">
+    <section id="hero-section" class="hero">
+      <h1>Signature resize: 10 KB to 20 KB (JPG)</h1>
+      <p class="privacy-note">🔒 Your file never leaves your device. All processing happens in your browser.</p>
+    </section>
+
+    <section id="tool-section" class="tool card" aria-label="Image resizer tool">
+      <fieldset class="field-group">
+        <legend>1. What are you uploading?</legend>
+        <div class="segmented" role="radiogroup">
+          <label><input type="radio" name="mode" value="photo" checked> Photo</label>
+          <label><input type="radio" name="mode" value="signature"> Signature</label>
+        </div>
+      </fieldset>
+      <fieldset class="field-group">
+        <legend>2. Form requirement</legend>
+        <div id="preset-chips" class="chips" role="group" aria-label="Common size presets"></div>
+        <div class="grid-2">
+          <label class="field">Min KB <small>(optional)</small>
+            <input id="min-kb" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 10">
+          </label>
+          <label class="field">Max KB
+            <input id="max-kb" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 20" required>
+          </label>
+          <label class="field">Width px <small>(optional)</small>
+            <input id="width-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 200">
+          </label>
+          <label class="field">Height px <small>(optional)</small>
+            <input id="height-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 230">
+          </label>
+        </div>
+        <div id="fit-row" class="segmented small" role="radiogroup" aria-label="How to fit into exact dimensions">
+          <label><input type="radio" name="fit" value="crop" checked> Crop to fill</label>
+          <label><input type="radio" name="fit" value="pad"> Fit (white border)</label>
+        </div>
+        <p id="settings-error" class="error" role="alert" hidden></p>
+      </fieldset>
+      <fieldset class="field-group">
+        <legend>3. Choose your image</legend>
+        <label id="file-drop" class="file-drop" for="file-input">
+          <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp">
+          <span class="file-drop-icon" aria-hidden="true">📷</span>
+          <span id="file-drop-text">Tap to choose a photo (JPG, PNG, WebP)</span>
+        </label>
+        <p id="file-error" class="error" role="alert" hidden></p>
+        <figure id="preview-box" class="preview" hidden>
+          <img id="preview-img" alt="Preview of selected image">
+          <figcaption id="preview-info"></figcaption>
+        </figure>
+        <button id="process-btn" class="btn-primary" type="button" disabled>Resize &amp; Compress</button>
+      </fieldset>
+      <section id="result-section" class="result" hidden aria-live="polite"></section>
+    </section>
+
+    <section id="guide-section" class="guide">
+      <h2>How to resize a signature to 10–20 KB</h2>
+      <ol>
+        <li><strong>Signature</strong> and the <strong>Signature 10–20 KB</strong> preset are already selected.</li>
+        <li>If the form asks for exact pixels, enter the width and height. Otherwise leave them empty and the tool picks a sharp size that fits.</li>
+        <li>Choose your image, tap <strong>Resize &amp; Compress</strong>, check that every item shows ✅, then download.</li>
+      </ol>
+      <p>Many recruitment and exam portals ask for a signature JPG between 10 KB and 20 KB. A clean signature on white paper is very simple, so it often compresses to <em>less</em> than the minimum. This tool handles both problems: it keeps the file under 20 KB and makes sure it is not below 10 KB. If the form gives dimensions in pixels, enter them. Many forms use a wide shape, such as about twice as wide as tall.</p>
+      <p class="muted">Always check the size rules in the official notification for your form.</p>
+
+      <h2>Frequently asked questions</h2>
+      <details><summary>My signature is only 5 KB. How can it become at least 10 KB?</summary><p>Simple signatures compress very well. The tool first uses maximum quality, then adds blank data inside the JPG file to reach the minimum. The signature itself doesn't change.</p></details>
+      <details><summary>How should I photograph my signature?</summary><p>Sign with a black or dark blue pen on plain white paper, photograph it in good light from directly above, and crop out the rest of the page. Choose <strong>Fit (white border)</strong> if your signature is a different shape from the required dimensions.</p></details>
+      <details><summary>Is my image uploaded?</summary><p>No. Processing happens in your browser and the file never leaves your device.</p></details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Tools">
+      <a href="../">Photo &amp; signature resizer</a>
+      <a href="../resize-image-to-20kb/">Resize to 20 KB</a>
+      <a href="../resize-image-to-50kb/">Resize to 50 KB</a>
+      <a href="../resize-image-to-100kb/">Resize to 100 KB</a>
+      <a href="../signature-resize-10kb-to-20kb/">Signature 10–20 KB</a>
+      <a href="../ssc-photo-signature-resize/">SSC photo &amp; signature</a>
+      <a href="../privacy/">Privacy</a>
+    </nav>
+    <p>FormFit Image · Free · No upload</p>
+  </footer>
+
+  <script src="../js/presets.js"></script>
+  <script src="../js/engine.js"></script>
+  <script src="../js/ui.js"></script>
+</body>
+</html>

@@ -104,7 +104,18 @@ main { max-width: 640px; margin: 0 auto; padding: 16px; }
 .guide h2 { font-size: 1.15rem; }
 .guide ol { padding-left: 20px; }
 
+.guide details { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0 14px; margin-bottom: 8px; }
+.guide summary { cursor: pointer; font-weight: 600; padding: 12px 0; min-height: 44px; }
+.guide details p { margin: 0 0 12px; }
+.spec-box { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 10px; padding: 12px 14px; margin: 0 0 16px; font-size: .92rem; }
+.spec-box h2 { font-size: 1rem; margin: 0 0 6px; }
+.spec-box p { margin: 6px 0; }
+.page-content { max-width: 640px; margin: 0 auto; padding: 16px; }
+.page-content h1 { font-size: 1.35rem; }
+
 .site-footer { text-align: center; padding: 24px 16px; color: var(--muted); font-size: .85rem; }
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; margin-bottom: 8px; }
+.footer-nav a { display: inline-block; padding: 8px 0; }
 
 @media (min-width: 640px) {
   .hero h1 { font-size: 1.7rem; }

@@ -37,7 +37,7 @@
 
   function applyPreset(key) {
     var p = window.FF_PRESETS[key];
-    if (!p) return;
+    if (!p) { els.fitRow.hidden = true; return; } // e.g. data-preset="custom": user enters values
     els.minKb.value = p.minKb || '';
     els.maxKb.value = p.maxKb || '';
     if (p.width) els.width.value = p.width;

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SSC CGL 2026 Photo &amp; Signature Resize Tool – Free, No Upload | FormFit Image</title>
+  <meta name="description" content="Resize your signature or photo to the KB size and dimensions given in your SSC CGL 2026 notice. Enter the values from the official notice, check the result, download a JPG. No upload.">
+  <meta name="theme-color" content="#1d4ed8">
+  <link rel="canonical" href="https://formfit-image.pages.dev/ssc-photo-signature-resize/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FormFit Image">
+  <meta property="og:title" content="SSC CGL 2026 Photo &amp; Signature Resize Tool">
+  <meta property="og:description" content="Fit your signature or photo to the size in your SSC CGL 2026 notice, right in your browser.">
+  <meta property="og:url" content="https://formfit-image.pages.dev/ssc-photo-signature-resize/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Do all SSC exams use the same photo and signature size?","acceptedAnswer":{"@type":"Answer","text":"No. Requirements can differ between SSC examinations and between years. Always use the values in the official notice for your exact exam."}},
+    {"@type":"Question","name":"The notice gives the signature size in cm. What do I enter?","acceptedAnswer":{"@type":"Answer","text":"Enter the KB limits from the notice. For dimensions, keep the same width-to-height ratio as the cm values, for example 4 cm by 2 cm has the same ratio as 400 by 200 px."}},
+    {"@type":"Question","name":"Is my image uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Processing happens in your browser and the file never leaves your device."}}
+  ]}
+  </script>
+</head>
+<body data-preset="custom">
+  <header class="site-header">
+    <a href="../" class="brand">FormFit <span>Image</span></a>
+  </header>
+
+  <main id="main">
+    <section id="hero-section" class="hero">
+      <h1>SSC CGL 2026 photo &amp; signature resize tool</h1>
+      <p class="privacy-note">🔒 Your file never leaves your device. All processing happens in your browser.</p>
+      <aside id="spec-box" class="spec-box" aria-label="Requirement source">
+        <h2>Requirements for: SSC Combined Graduate Level (CGL) Examination 2026</h2>
+        <p><strong>Status: not yet verified by FormFit.</strong> We haven't confirmed the exact photo and signature rules against the official CGL 2026 notice, so this page doesn't list specific numbers. Please open the notice and type its KB limits and dimensions into the tool below.</p>
+        <p><strong>Official source:</strong> <a href="https://ssc.gov.in/" target="_blank" rel="noopener">ssc.gov.in</a>. Look for the CGL 2026 notice, in the section on photograph and signature.</p>
+        <p><strong>Last verified:</strong> not yet verified (page created 2026-10-01).</p>
+        <p class="muted">Rules can differ between SSC exams (CGL, CHSL, MTS, GD, Selection Post and others) and between years. Don't reuse another exam's values.</p>
+      </aside>
+    </section>
+
+    <section id="tool-section" class="tool card" aria-label="Image resizer tool">
+      <fieldset class="field-group">
+        <legend>1. What are you uploading?</legend>
+        <div class="segmented" role="radiogroup">
+          <label><input type="radio" name="mode" value="photo" checked> Photo</label>
+          <label><input type="radio" name="mode" value="signature"> Signature</label>
+        </div>
+      </fieldset>
+      <fieldset class="field-group">
+        <legend>2. Form requirement</legend>
+        <div id="preset-chips" class="chips" role="group" aria-label="Common size presets"></div>
+        <div class="grid-2">
+          <label class="field">Min KB <small>(optional)</small>
+            <input id="min-kb" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 10">
+          </label>
+          <label class="field">Max KB
+            <input id="max-kb" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 20" required>
+          </label>
+          <label class="field">Width px <small>(optional)</small>
+            <input id="width-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 200">
+          </label>
+          <label class="field">Height px <small>(optional)</small>
+            <input id="height-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 230">
+          </label>
+        </div>
+        <div id="fit-row" class="segmented small" role="radiogroup" aria-label="How to fit into exact dimensions">
+          <label><input type="radio" name="fit" value="crop" checked> Crop to fill</label>
+          <label><input type="radio" name="fit" value="pad"> Fit (white border)</label>
+        </div>
+        <p id="settings-error" class="error" role="alert" hidden></p>
+      </fieldset>
+      <fieldset class="field-group">
+        <legend>3. Choose your image</legend>
+        <label id="file-drop" class="file-drop" for="file-input">
+          <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp">
+          <span class="file-drop-icon" aria-hidden="true">📷</span>
+          <span id="file-drop-text">Tap to choose a photo (JPG, PNG, WebP)</span>
+        </label>
+        <p id="file-error" class="error" role="alert" hidden></p>
+        <figure id="preview-box" class="preview" hidden>
+          <img id="preview-img" alt="Preview of selected image">
+          <figcaption id="preview-info"></figcaption>
+        </figure>
+        <button id="process-btn" class="btn-primary" type="button" disabled>Resize &amp; Compress</button>
+      </fieldset>
+      <section id="result-section" class="result" hidden aria-live="polite"></section>
+    </section>
+
+    <section id="guide-section" class="guide">
+      <h2>How to prepare your SSC upload</h2>
+      <ol>
+        <li>Open the official notice for your exact SSC exam and find the photograph and signature section.</li>
+        <li>Choose <strong>Photo</strong> or <strong>Signature</strong>, then type the notice's <strong>Min KB</strong>, <strong>Max KB</strong> and, if given, the dimensions.</li>
+        <li>Choose your image, tap <strong>Resize &amp; Compress</strong>, check that every item shows ✅, then download the JPG and upload it on the SSC portal.</li>
+      </ol>
+      <p><strong>Photo:</strong> some SSC exams ask for a photograph captured live through the application system instead of an uploaded file. If your notice says this, follow the portal's camera instructions. This tool is only for files you need to upload yourself.</p>
+      <p><strong>Signature:</strong> sign with a dark pen on plain white paper, photograph it from directly above in good light, and crop the extra paper. If the notice gives the size in cm, keep the same width-to-height ratio in pixels (for example, 4 × 2 cm has the same ratio as 400 × 200 px).</p>
+
+      <h2>Frequently asked questions</h2>
+      <details><summary>Do all SSC exams use the same photo and signature size?</summary><p>No. Requirements can differ between SSC examinations and between years. Always use the values in the official notice for your exact exam.</p></details>
+      <details><summary>The notice gives the signature size in cm. What do I enter?</summary><p>Enter the KB limits from the notice. For dimensions, keep the same width-to-height ratio as the cm values. For example, 4 cm × 2 cm has the same ratio as 400 × 200 px.</p></details>
+      <details><summary>Is this an official SSC website?</summary><p>No. FormFit Image is an independent free tool and has no connection to the Staff Selection Commission.</p></details>
+      <details><summary>Is my image uploaded?</summary><p>No. Processing happens in your browser and the file never leaves your device.</p></details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Tools">
+      <a href="../">Photo &amp; signature resizer</a>
+      <a href="../resize-image-to-20kb/">Resize to 20 KB</a>
+      <a href="../resize-image-to-50kb/">Resize to 50 KB</a>
+      <a href="../resize-image-to-100kb/">Resize to 100 KB</a>
+      <a href="../signature-resize-10kb-to-20kb/">Signature 10–20 KB</a>
+      <a href="../ssc-photo-signature-resize/">SSC photo &amp; signature</a>
+      <a href="../privacy/">Privacy</a>
+    </nav>
+    <p>FormFit Image · Free · No upload</p>
+  </footer>
+
+  <script src="../js/presets.js"></script>
+  <script src="../js/engine.js"></script>
+  <script src="../js/ui.js"></script>
+</body>
+</html>

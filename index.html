@@ -6,7 +6,20 @@
   <title>Resize Photo &amp; Signature to KB for Online Forms – FormFit Image</title>
   <meta name="description" content="Free tool to resize and compress your photo or signature to the exact KB size and pixel dimensions required by online application forms. Works in your browser – files are never uploaded.">
   <meta name="theme-color" content="#1d4ed8">
+  <link rel="canonical" href="https://formfit-image.pages.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FormFit Image">
+  <meta property="og:title" content="Resize Photo &amp; Signature to KB for Online Forms">
+  <meta property="og:description" content="Free, no-upload tool to fit your photo or signature to the exact KB size and dimensions your form needs.">
+  <meta property="og:url" content="https://formfit-image.pages.dev/">
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Is my photo uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The image is processed inside your browser and never leaves your device."}},
+    {"@type":"Question","name":"What if my form says the file must be between two KB sizes?","acceptedAnswer":{"@type":"Answer","text":"Enter both Min KB and Max KB. The tool aims for a file inside that range and shows a pass or fail check."}},
+    {"@type":"Question","name":"Is 1 KB 1000 or 1024 bytes?","acceptedAnswer":{"@type":"Answer","text":"Portals differ, so the tool keeps the file under the maximum using 1000 bytes and above the minimum using 1024 bytes. That passes either rule."}}
+  ]}
+  </script>
 </head>
 <body data-preset="photo-20-50">
   <header class="site-header">
@@ -86,11 +99,26 @@
         <li>Choose your image, tap <strong>Resize &amp; Compress</strong>, then download the JPG.</li>
       </ol>
       <p class="muted">Always check the size rules in the official notification for your form. Exam and portal rules can change.</p>
+
+      <h2>Frequently asked questions</h2>
+      <details><summary>Is my photo uploaded to a server?</summary><p>No. The image is processed inside your browser and never leaves your device. You can even turn off mobile data after the page loads.</p></details>
+      <details><summary>What if my form says the file must be between two KB sizes?</summary><p>Enter both <strong>Min KB</strong> and <strong>Max KB</strong>, for example 20 and 50. The tool aims for a file inside that range and shows a pass or fail check for size, dimensions and format.</p></details>
+      <details><summary>Is 1 KB 1000 or 1024 bytes?</summary><p>Portals differ. The tool keeps the file under the maximum using 1000 bytes per KB and above the minimum using 1024 bytes per KB, so it passes either rule.</p></details>
+      <details><summary>My form gives the size in cm, not pixels. What do I enter?</summary><p>Check whether your notice also lists pixel dimensions. If it only gives cm, keep the same width-to-height ratio. For example, a 3.5 × 4.5 cm photo has the same ratio as 350 × 450 px.</p></details>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>FormFit Image · Free · No upload · <a href="privacy/">Privacy</a></p>
+    <nav class="footer-nav" aria-label="Tools">
+      <a href="./">Photo &amp; signature resizer</a>
+      <a href="resize-image-to-20kb/">Resize to 20 KB</a>
+      <a href="resize-image-to-50kb/">Resize to 50 KB</a>
+      <a href="resize-image-to-100kb/">Resize to 100 KB</a>
+      <a href="signature-resize-10kb-to-20kb/">Signature 10–20 KB</a>
+      <a href="ssc-photo-signature-resize/">SSC photo &amp; signature</a>
+      <a href="privacy/">Privacy</a>
+    </nav>
+    <p>FormFit Image · Free · No upload</p>
   </footer>
 
   <script src="js/presets.js"></script>
