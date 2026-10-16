@@ -13,7 +13,7 @@ A free, browser-only tool that resizes a photo or signature to the exact KB size
 - Processing engine: target KB range, exact dimensions, JPEG output, white background
 - Result card with pass/fail checklist, download button and long-press hint
 
-- Landing pages (each has the full tool): `/resize-image-to-20kb/`, `/resize-image-to-50kb/`, `/resize-image-to-100kb/`, `/signature-resize-10kb-to-20kb/`, `/ssc-photo-signature-resize/` (SSC CGL 2026, general guidance only, not yet verified)
+- Landing pages (each has the full tool): `/resize-image-to-20kb/`, `/resize-image-to-50kb/`, `/resize-image-to-100kb/`, `/signature-resize-10kb-to-20kb/`, `/exam-photo-signature-resize/` (generic guidance; user supplies values from their official notice)
 - `/privacy/`, `404.html`, `robots.txt`, `sitemap.xml`, FAQ structured data and canonical/Open Graph tags
 
 ## Not yet built

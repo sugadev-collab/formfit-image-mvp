@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam Photo &amp; Signature Resizer – Custom KB &amp; Dimensions | FormFit Image</title>
+  <meta name="description" content="Resize exam application photos and signatures to the KB limits and pixel dimensions required by your own application notice. Free browser-only tool; no upload.">
+  <meta name="theme-color" content="#1d4ed8">
+  <link rel="canonical" href="https://formfit-image.pages.dev/exam-photo-signature-resize/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FormFit Image">
+  <meta property="og:title" content="Exam Photo &amp; Signature Resizer – FormFit Image">
+  <meta property="og:description" content="Enter your application notice's photo or signature KB limits and dimensions. Resize privately in your browser.">
+  <meta property="og:url" content="https://formfit-image.pages.dev/exam-photo-signature-resize/">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do all examinations require the same photo or signature dimensions?","acceptedAnswer":{"@type":"Answer","text":"No. File-size limits, pixel dimensions, formats and photo capture rules vary by examination and application portal. Always follow your current official notice."}},{"@type":"Question","name":"What if the notice gives dimensions in centimetres?","acceptedAnswer":{"@type":"Answer","text":"Check for pixel dimensions or DPI requirements in the official notice. A centimetre measurement alone cannot determine the required pixel count without a DPI value."}},{"@type":"Question","name":"Are my images uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Image resizing happens inside your browser; the tool does not upload your file."}}]}
+  </script>
+</head>
+<body data-preset="custom">
+  <header class="site-header">
+    <a href="../" class="brand">FormFit <span>Image</span></a>
+  </header>
+
+  <main id="main">
+    <section id="hero-section" class="hero">
+      <h1>Exam photo &amp; signature resizer</h1>
+      <p class="privacy-note">🔒 Your file never leaves your device. All processing happens in your browser.</p>
+      <aside id="spec-box" class="spec-box" aria-label="How to find requirements">
+        <h2>Use the requirements from your own application notice</h2>
+        <p><strong>No universal exam settings.</strong> Check the official exam or recruitment portal for the required file type, minimum and maximum KB, pixel dimensions and any live-photo instructions. Enter only the requirements that apply to your form.</p>
+        <p class="muted">FormFit Image is an independent tool, not affiliated with any exam board or government agency. If the portal requires a live camera capture, follow its instructions rather than uploading a resized file.</p>
+      </aside>
+    </section>
+
+    <section id="tool-section" class="tool card" aria-label="Image resizer tool">
+      <fieldset class="field-group">
+        <legend>1. What are you uploading?</legend>
+        <div class="segmented" role="radiogroup">
+          <label><input type="radio" name="mode" value="photo" checked> Photo</label>
+          <label><input type="radio" name="mode" value="signature"> Signature</label>
+        </div>
+      </fieldset>
+      <fieldset class="field-group">
+        <legend>2. Form requirement</legend>
+        <div id="preset-chips" class="chips" role="group" aria-label="Common size presets"></div>
+        <div class="grid-2">
+          <label class="field">Min KB <small>(optional)</small>
+            <input id="min-kb" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 10">
+          </label>
+          <label class="field">Max KB
+            <input id="max-kb" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 20" required>
+          </label>
+          <label class="field">Width px <small>(optional)</small>
+            <input id="width-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 200">
+          </label>
+          <label class="field">Height px <small>(optional)</small>
+            <input id="height-px" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 230">
+          </label>
+        </div>
+        <div id="fit-row" class="segmented small" role="radiogroup" aria-label="How to fit into exact dimensions">
+          <label><input type="radio" name="fit" value="crop" checked> Crop to fill</label>
+          <label><input type="radio" name="fit" value="pad"> Fit (white border)</label>
+        </div>
+        <p id="settings-error" class="error" role="alert" hidden></p>
+      </fieldset>
+      <fieldset class="field-group">
+        <legend>3. Choose your image</legend>
+        <label id="file-drop" class="file-drop" for="file-input">
+          <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp">
+          <span class="file-drop-icon" aria-hidden="true">📷</span>
+          <span id="file-drop-text">Tap to choose a photo (JPG, PNG, WebP)</span>
+        </label>
+        <p id="file-error" class="error" role="alert" hidden></p>
+        <figure id="preview-box" class="preview" hidden>
+          <img id="preview-img" alt="Preview of selected image">
+          <figcaption id="preview-info"></figcaption>
+        </figure>
+        <button id="process-btn" class="btn-primary" type="button" disabled>Resize &amp; Compress</button>
+      </fieldset>
+      <section id="result-section" class="result" hidden aria-live="polite"></section>
+    </section>
+
+    <section id="guide-section" class="guide">
+      <h2>How to prepare an exam photo or signature</h2>
+      <ol>
+        <li>Open the official notice for your particular examination or application. Find its photo and signature requirements.</li>
+        <li>Choose <strong>Photo</strong> or <strong>Signature</strong>. Enter the specified <strong>Min KB</strong>, <strong>Max KB</strong> and, if provided, pixel dimensions.</li>
+        <li>Choose an image, select <strong>Resize &amp; Compress</strong>, review the checks, and download the JPG only if it meets your form's requirements.</li>
+      </ol>
+      <p><strong>Important:</strong> If your portal requires a live photograph, a specific background, or a particular image format, follow the official instructions. This tool cannot guarantee that a portal will accept an image.</p>
+      <p><strong>Physical dimensions:</strong> centimetres or inches alone do not specify pixel dimensions; you also need a DPI/PPI requirement or a stated pixel size. Avoid guessing when your notice is unclear.</p>
+      <h2>Frequently asked questions</h2>
+      <details><summary>Do all examinations use the same photo or signature size?</summary><p>No. Requirements can differ between exams, years and portals. Use your current official notice rather than copying someone else's settings.</p></details>
+      <details><summary>The notice gives dimensions in centimetres. What should I enter?</summary><p>Check for an accompanying pixel size or DPI/PPI requirement. Without one, centimetres alone cannot specify an exact pixel count.</p></details>
+      <details><summary>Is FormFit an official exam website?</summary><p>No. FormFit Image is an independent image-processing tool and is not endorsed by or affiliated with an examination authority.</p></details>
+      <details><summary>Is my image uploaded?</summary><p>No. The image is processed in your browser and is not uploaded to a server.</p></details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Tools">
+      <a href="../">Photo &amp; signature resizer</a>
+      <a href="../resize-image-to-20kb/">Resize to 20 KB</a>
+      <a href="../resize-image-to-50kb/">Resize to 50 KB</a>
+      <a href="../resize-image-to-100kb/">Resize to 100 KB</a>
+      <a href="../signature-resize-10kb-to-20kb/">Signature 10–20 KB</a>
+      <a href="../exam-photo-signature-resize/">Exam photo &amp; signature</a>
+      <a href="../privacy/">Privacy</a>
+    </nav>
+    <p>FormFit Image · Free · No upload</p>
+  </footer>
+
+  <script src="../js/presets.js"></script>
+  <script src="../js/engine.js"></script>
+  <script src="../js/ui.js"></script>
+</body>
+</html>

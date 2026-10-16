@@ -5,7 +5,7 @@ This repo is edited by several AIs and tools (Genspark, VS Code + various models
 
 ## Read order
 1. This file
-2. `PROJECT_PLAN.md`: goals, architecture, **interfaces**, decisions, SSC rules
+2. `PROJECT_PLAN.md`: goals, architecture, **interfaces**, decisions, generic exam-page rules
 3. Only the files your task touches
 
 ## Session start checklist
@@ -30,7 +30,7 @@ This repo is edited by several AIs and tools (Genspark, VS Code + various models
 ## Current state (after Session 3)
 The tool works end to end on 6 pages (home + 5 landing pages), plus privacy, 404, robots and sitemap.
 **Heads-up:** the tool markup is copied into all 6 tool pages. Edit them together.
-Missing: analytics, deployment, Search Console. The SSC page is unverified (general guidance only).
+Missing: analytics, deployment, Search Console. The exam page is unverified (general guidance only).
 
 ## Next task — Session 4: analytics + deploy (last MVP session)
 1. **Analytics:** create `js/analytics.js` with GoatCounter (free, no cookies). Define `window.FF_track(name, data)` that calls `goatcounter.count({ path: 'event-' + name, title: name, event: true })`. Load it on all 6 tool pages, before `engine.js`.
@@ -42,13 +42,16 @@ Missing: analytics, deployment, Search Console. The SSC page is unverified (gene
    - Then replace `https://formfit-image.pages.dev` in all HTML, robots and sitemap if the real URL differs.
 4. **Production checks:** every URL loads, 404 works, robots and sitemap are reachable, and the download works on a real Android phone in Chrome and in the WhatsApp in-app browser.
 5. **Search Console:** add a verification meta tag to `index.html`, submit `sitemap.xml`. Optionally do the same in Bing Webmaster Tools.
-6. **Optional, only if the user verifies it:** fill in the SSC CGL 2026 values plus the exact notice URL and date on the SSC page.
+6. Keep the exam page generic. Do not add exam names, logos or exam-specific values without the user's approval and official verification.
 
 **Done when:** the live URL works on Android, events show in GoatCounter, and the sitemap is submitted. **Then STOP building. Phase 4 validation starts.**
+
+## Prelaunch change (2026-10-16)
+- Replaced the exam-specific landing page with generic guidance; updated navigation, SEO, sitemap, tests and documentation. Browser tests still need to be rerun after merge.
 
 ## Session log
 | # | Date | Tool/AI | Changed | Tests | Notes |
 |---|---|---|---|---|---|
 | 1 | 2026-10-01 | Genspark | index.html, css/style.css, js/presets.js, js/ui.js, docs | console check + mobile screenshot | `:has()` highlight needs a modern browser |
 | 2 | 2026-10-01 | Genspark | +js/engine.js, +tests/*, index.html (script tag), css (result styles), ui.js (hide old result on new file) | engine 9/9 pass; UI end-to-end pass (21.5 KB, 200×230); mobile screenshot OK | not yet tested on a real Android device |
-| 3 | 2026-10-01 | Genspark | +5 landing folders, +privacy/, +404.html, +robots.txt, +sitemap.xml, +tests/pages-test.*; index.html (SEO tags, FAQ, footer nav); css (FAQ, spec box, footer); ui.js (unknown preset → validate) | pages 15/15; UI end-to-end pass; SSC mobile screenshot OK | SSC page unverified; domain is a placeholder |
+| 3 | 2026-10-01 | Genspark | +5 landing folders, +privacy/, +404.html, +robots.txt, +sitemap.xml, +tests/pages-test.*; index.html (SEO tags, FAQ, footer nav); css (FAQ, spec box, footer); ui.js (unknown preset → validate) | pages 15/15; UI end-to-end pass; exam page screenshot was checked before generic rewrite; rerun tests | exam page unverified; domain is a placeholder |

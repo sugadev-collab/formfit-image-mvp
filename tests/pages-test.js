@@ -8,7 +8,7 @@
     { path: '../resize-image-to-50kb/index.html', maxKb: '50', minKb: '', mode: 'photo' },
     { path: '../resize-image-to-100kb/index.html', maxKb: '100', minKb: '', mode: 'photo' },
     { path: '../signature-resize-10kb-to-20kb/index.html', maxKb: '20', minKb: '10', mode: 'signature' },
-    { path: '../ssc-photo-signature-resize/index.html', maxKb: '', minKb: '', mode: 'photo', custom: true }
+    { path: '../exam-photo-signature-resize/index.html', maxKb: '', minKb: '', mode: 'photo', custom: true }
   ];
   var frame = document.getElementById('frame'), out = document.getElementById('out');
   var pass = 0, fail = 0;
