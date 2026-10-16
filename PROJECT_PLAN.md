@@ -23,7 +23,7 @@ Market experiment ($0 budget): a browser-only tool that resizes/compresses a pho
 
 ```
 index.html          home page + tool (body[data-preset] selects default preset)
-resize-image-to-20kb/ | resize-image-to-50kb/ | resize-image-to-100kb/ | signature-resize-10kb-to-20kb/ | ssc-photo-signature-resize/
+resize-image-to-20kb/ | resize-image-to-50kb/ | resize-image-to-100kb/ | signature-resize-10kb-to-20kb/ | exam-photo-signature-resize/
                     landing pages: copies of the tool markup with ../ paths, their own preset, title/meta/H1/guide/FAQ
 privacy/index.html  privacy policy (no tool)
 404.html            uses root-absolute /css/ paths (served at any depth)
@@ -77,7 +77,7 @@ Script load order in HTML: `presets.js` → `engine.js` → `ui.js`.
 |---|---|---|
 | 1 | 2026-10-01 | Project setup, layout, presets, settings validation, file picker + preview, docs |
 | 2 | 2026-10-01 | `js/engine.js` (fit/encode/pad/render result), result CSS, `tests/` self-tests. Engine test 9/9 pass; UI end-to-end pass; mobile screenshot OK |
-| 3 | 2026-10-01 | 5 landing pages, privacy, 404, robots, sitemap, footer nav, FAQ + JSON-LD + canonical/OG on all pages. Pages test 15/15; UI end-to-end pass; SSC mobile screenshot OK |
+| 3 | 2026-10-01 | 5 landing pages, privacy, 404, robots, sitemap, footer nav, FAQ + JSON-LD + canonical/OG on all pages. Pages test 15/15; UI end-to-end pass; exam landing page originally tested; generic replacement needs browser retest |
 
 ## 6. Current task
 **Next: Session 4 — analytics, no-upload check, Android test, deploy, Search Console** (see `AI_HANDOFF.md` → Next task).
@@ -90,7 +90,7 @@ Script load order in HTML: `presets.js` → `engine.js` → `ui.js`.
 - Processing runs on the main thread: about 1–3 s for 12 MP photos on desktop, possibly slower on low-end Android. Move to a Web Worker only if data shows a problem.
 - Not yet tested on a real Android device or in WhatsApp/Telegram in-app browsers (S4).
 - Fixed W×H crop is always centred; there's no manual positioning (deferred).
-- The SSC page names **SSC CGL 2026** but is **not verified**. It has no numbers, only a link to ssc.gov.in (home page, not the exact notice PDF) and "Last verified: not yet verified". To verify: open the official CGL 2026 notice, add its values and the exact PDF URL, and set the date. Until then it's general guidance only.
+- The exam landing page is generic and deliberately contains no authority names or unverified exam-specific values. Users must enter requirements from their own official notice.
 - `404.html` uses `/css/style.css`, which shows unstyled in the Genspark preview but works on Cloudflare Pages (served from the site root).
 - `https://formfit-image.pages.dev` is a placeholder in canonical, OG, robots and sitemap on all pages. Search and replace it once the real URL is known (S4).
 - Tool markup is duplicated in 6 pages (no build step). Accepted for the MVP; revisit if the page count grows.
@@ -133,14 +133,14 @@ MVP → post-launch fixes (from data only) → evidence-driven improvements → 
 | Min KB as ×1024, max as ×1000 | Works for both KB definitions |
 | No ads at launch | Measure real usage first; AdSense needs a domain anyway |
 | Generic presets only (no exam values yet) | Exam specs change; values must be verified against official notices |
-| SSC landing page stays planned (decided 2026-10-01) | See the SSC rules below |
-| SSC page built as unverified general guidance for CGL 2026 (S3) | The notice wasn't verified in-session, so no numbers are shown, per the SSC rules |
+| Generic exam guidance page | Avoid implied official affiliation and outdated exam-specific requirements |
+| Exam page made generic for prelaunch (2026-10-16) | User supplies current requirements; no government names or presets |
 | Landing pages are full HTML copies, not JS-injected | Static HTML is best for SEO and needs no build step |
 | Min KB reached by JPEG COM padding, not by worsening the image | Keeps the picture sharp; honest message shown to the user |
 | Free dims: shrink rather than go below q=0.5 | Blurry photos get rejected by verifiers; most forms don't need large pixel sizes |
 
-### SSC / exam page rules (mandatory)
-- Never claim one universal "SSC" spec. Requirements differ by exam and year (for example, CGL 2026 uses a live photo and a 10–20 KB signature of about 4 cm × 2 cm, while other notices use different signature dimensions).
-- Each exam page must name the exact exam and year (for example, "SSC CGL 2026"), link the official notice on ssc.gov.in, and show a "Last verified: YYYY-MM-DD" date.
-- If the notice can't be verified, use general guidance ("enter the values from your notice") with no specific numbers.
-- Exam presets are added to `js/presets.js` only after verification, with a `source` URL and `verified` date in a comment.
+### Generic exam page rules (mandatory)
+- Do not imply affiliation with an exam board or government agency.
+- Never assert a universal size or format for all exams. Tell users to check the current official notice.
+- Do not add an exam name, logo, exam-specific preset or numerical requirement without explicit user approval and a verified official source/date.
+- Keep the independent-tool disclaimer and client-side processing guarantees accurate.
