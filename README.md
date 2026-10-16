@@ -2,7 +2,9 @@
 
 A free, browser-only tool that resizes a photo or signature to the exact KB size and dimensions online forms ask for. Files are never uploaded.
 
-**Status:** MVP in progress (Session 3 of 4 done). **Contributors and AIs: start with `AI_HANDOFF.md`**, then `PROJECT_PLAN.md`.
+**[Try FormFit Image](https://formfit-image.pages.dev/)**
+
+**Status:** Public MVP deployed on Cloudflare Pages. Image resizing and dimensions have been checked by the developer; additional cross-device testing and optional discovery/analytics setup remain. **Contributors and AIs: start with `AI_HANDOFF.md`**, then `PROJECT_PLAN.md`.
 
 ## Done
 - Mobile-first page layout
@@ -17,7 +19,7 @@ A free, browser-only tool that resizes a photo or signature to the exact KB size
 - `/privacy/`, `404.html`, `robots.txt`, `sitemap.xml`, FAQ structured data and canonical/Open Graph tags
 
 ## Not yet built
-Analytics, deployment, Search Console (S4)
+Optional analytics and Search Console setup; deployment is complete.
 
 ## Tests
 Open in a browser and check that each shows 0 failed:
@@ -32,7 +34,8 @@ Open in a browser and check that each shows 0 failed:
 No database, no storage, no backend. Everything runs in the browser.
 
 ## Run locally
-Open `index.html`, or serve the folder with any static server. Deploy to Cloudflare Pages: no build command, output directory `/`.
+Open `index.html`, or serve the folder with any static server. Cloudflare Pages deploys the repository as static files (no framework or build required; output directory `.`).
 
 ## Public URLs
-None yet.
+
+- Production: **https://formfit-image.pages.dev/**
