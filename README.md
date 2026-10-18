@@ -4,6 +4,8 @@ A free, browser-only tool that resizes a photo or signature to the exact KB size
 
 **[Try FormFit Image](https://formfit-image.pages.dev/)**
 
+Developer portfolio: **[Elakumar Sugatheepan](https://sugadev-collab.github.io/myportfolio/)**
+
 **Status:** Public MVP deployed on Cloudflare Pages. Image resizing and dimensions have been checked by the developer; additional cross-device testing and optional discovery/analytics setup remain. **Contributors and AIs: start with `AI_HANDOFF.md`**, then `PROJECT_PLAN.md`.
 
 ## Done
